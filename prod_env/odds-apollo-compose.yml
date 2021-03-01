@@ -1,0 +1,13 @@
+version: '3'
+services:
+  odds-apollo:
+    image: 'odds-apollo-image'
+    restart: on-failure
+    ports:
+      - "4000:4000"
+    environment:
+      - ODDS_DB_URL=http://odds-micro:8080/api/
+networks:
+  default:
+    external:
+      name: odds-network

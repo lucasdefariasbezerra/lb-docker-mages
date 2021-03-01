@@ -1,0 +1,11 @@
+version: '3'
+services:
+  odds-ui:
+    image: 'odds-ui-image'
+    restart: on-failure
+    ports:
+      - "3000:3000"
+networks:
+  default:
+    external:
+      name: odds-network

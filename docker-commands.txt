@@ -1,0 +1,19 @@
+docker run -d -p 8080:8080 --net=host \
+-e ODDS_DB_PASSWORD='Mast3rkey' \
+-e ODDS_DB_URL='jdbc:mysql://odds-db.culholm3esfl.sa-east-1.rds.amazonaws.com:3306/odds?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC' \
+-e ODDS_DB_USER='root' --name odds-micro-container odds-micro-image
+
+docker run -d -p 4000:4000 --net=host -e BACKEND_URL='http://localhost:8080/api/' --name odds-apollo-container odds-apollo-image
+
+docker run -d -p 3000:3000 --net=host --name odds-ui-container odds-ui-image
+
+docker run -d -p 8080:8080 \
+-e ODDS_DB_PASSWORD='M@st3rkey' \
+-e ODDS_DB_URL='jdbc:mysql://mysql8:3306/odds?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC' \
+-e ODDS_DB_USER='user_odds' --name odds-micro-container --link mysql8:mysql/mysql-server odds-micro-image
+
+docker run -d -p 4000:4000 -e BACKEND_URL=http://odds-micro-container:8080/api/ --name apollo-micro-container --link odds-micro-container:odds-micro-image apollo-server-image
+
+docker container rm  $(docker container ls -aq)
+
+docker build -f Dockerfile.dev .

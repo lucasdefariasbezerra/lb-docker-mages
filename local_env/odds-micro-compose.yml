@@ -1,0 +1,15 @@
+version: '3'
+services:
+  odds-micro:
+    image: 'odds-micro-image'
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      - ODDS_DB_PASSWORD=M@st3rkey
+      - ODDS_DB_URL=jdbc:mysql://mysql8:3306/odds?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC
+      - ODDS_DB_USER=user_odds
+networks:
+  default:
+    external:
+      name: odds-network
