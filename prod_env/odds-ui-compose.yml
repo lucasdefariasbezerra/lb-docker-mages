@@ -1,7 +1,7 @@
 version: '3'
 services:
   odds-ui:
-    image: 'odds-ui-image'
+    image: 'lucasdefariasbezerra/odds-repo:odds-ui-image'
     restart: on-failure
     ports:
       - "3000:3000"

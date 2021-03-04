@@ -1,7 +1,7 @@
 version: '3'
 services:
   odds-apollo:
-    image: 'odds-apollo-image'
+    image: 'lucasdefariasbezerra/odds-repo:odds-apollo-image'
     restart: on-failure
     ports:
       - "4000:4000"

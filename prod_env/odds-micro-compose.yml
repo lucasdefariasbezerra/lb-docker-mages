@@ -1,7 +1,7 @@
 version: '3'
 services:
   odds-micro:
-    image: 'odds-micro-image'
+    image: 'lucasdefariasbezerra/odds-repo:odds-micro-image'
     restart: on-failure
     ports:
       - "8080:8080"
